@@ -28,14 +28,18 @@
                 <div class="row">
                     <div class="col-12 mb-3 col-sm-8">
                         <div class="row">
-
+                            <div class="col-md-5">
+                                Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado, 3, 'POINT', 2, 'COMMA')}">199,99</span>
+                            </div>
+                            <div class="col-md-7">
+                                Data da entrega: <span th:text="${#temporals.format(pedido.localDate, 'dd/MM/yyyy')}">10/10/2021</span>
+                            </div>
                         </div>
-                        <div class="com-md-6">Valor: <span th:text="${pedido.valorNegociado}">299,99</span></div>
-                        <div class="com-md-6">Data da entrega: </div>
+                        </div>
 
                         <div>Produto</div>
                         <div>
-                            Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado, 3, 'POINT', 2, 'COMMA')}">199,99</span>
+                            <input class="form-control" th:value="${pedido.urlProduto}" value="url do produto"/>
                         </div>
 
                         <div>Descrição</div>
@@ -51,6 +55,5 @@
                 </div>
              </div>
          </div>
-    </div>
 </body>
 </html>
