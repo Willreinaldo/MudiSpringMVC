@@ -8,19 +8,34 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests()
-                .anyRequest().authenticated()
-                .and().formLogin(form -> form
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers( "/home").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
-                );
+                )
+
+                .logout(logout -> {
+                    logout.logoutUrl("/logout").logoutSuccessUrl("/home");
+                })
+                .csrf().disable();
+
+        return http.build();
     }
 
     @Bean
@@ -29,9 +44,10 @@ public class WebSecurityConfig {
                 User.withDefaultPasswordEncoder()
                         .username("admin")
                         .password("admin")
-                        .roles("ADM")
+                        .roles("USER")
                         .build();
 
         return new InMemoryUserDetailsManager(user);
     }
 }
+
