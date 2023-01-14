@@ -32,6 +32,7 @@
         <form  sec:authorize="isAuthenticated()" id="form-login" th:action="@{/logout}" method="POST"><button type="submit" class="btn btn-link text-light">logout</button></form>
     </span>
 
+
 </div>
 <div th:fragment="titulo(valor)" class="jumbotron-fluid mb-0">
     <h1 class="display-4" th:text="${valor}"></h1>
