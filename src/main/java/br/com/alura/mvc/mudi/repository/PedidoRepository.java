@@ -3,6 +3,7 @@ package br.com.alura.mvc.mudi.repository;
 import br.com.alura.mvc.mudi.model.Pedido;
 
 import br.com.alura.mvc.mudi.model.StatusPedido;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +17,7 @@ import java.util.List;
 public interface PedidoRepository extends JpaRepository<Pedido,Long> {
     public List<Pedido> findAll();
 
+    @Cacheable("books")
     List<Pedido> findByStatus(StatusPedido statusPedido, PageRequest pageRequest);
 
     @Query("select p from Pedido p join p.user where p.user.username = :username")
