@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 public class Pedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,6 +29,14 @@ public class Pedido {
     private String descricao;
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNomeProduto() {
         return nomeProduto;

@@ -29,3 +29,4 @@ public interface PedidoRepository extends JpaRepository<Pedido,Long> {
 
     @Query("select p from Pedido p join p.user u where u.username = :username")
     List<Pedido> findAllByUsuario(@Param("username")String username);}
+

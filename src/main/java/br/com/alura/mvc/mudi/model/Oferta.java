@@ -15,7 +15,7 @@ public class Oferta {
 
     private BigDecimal valor;
 
-    private LocalDate dataDaEntrega;
+    private LocalDate localDate;
 
     private String comentario;
 
@@ -47,12 +47,12 @@ public class Oferta {
         this.valor = valor;
     }
 
-    public LocalDate getDataDaEntrega() {
-        return dataDaEntrega;
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
-    public void setDataDaEntrega(LocalDate dataDaEntrega) {
-        this.dataDaEntrega = dataDaEntrega;
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 
     public String getComentario() {

@@ -92,7 +92,7 @@
 						    localDate: pedido.localDate,
 						    comentario: pedido.comentario
 })
-      					.then(response => pedido.ofertaEnviada = true)
+      					 .then(response => this.$set(pedido,'ofertaEnviada', true))
       					.catch(error => {
 						    	  error.response.data.errors.forEach(error => {
 						    		  pedido.erros[error.field] = error.defaultMessage;
