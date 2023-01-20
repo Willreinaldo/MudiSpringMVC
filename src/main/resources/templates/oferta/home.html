@@ -17,21 +17,21 @@
 
 
 
-        <div class="card-header alert-dark" > {{pedido.nome}}</div>
+        <div class="card-header alert-dark" > {{pedido.nomeProduto}}</div>
 
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-sm-8 mb-3">
                     <div>Produto</div>
                     <div>
-                        <a  v-bind:href="pedido.urlProduto" />{{pedido.nome}}</a>
+                        <div> <a  v-bind:href="pedido.urlProduto"> {{pedido.nomeProduto}}</a></div>
                     </div>
                     <div>descricao</div>
                     <div>
                         <textarea disabled 	class="form-control">{{pedido.descricao}}</textarea>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-5">Valor: <input v-bind:class="{'is-invalid':pedido.erros.valor !==''}" class="form-control" v-model="pedido.valorNegociado"/></div>
+                        <div class="col-md-5">Valor: <input v-bind:class="{'is-invalid':pedido.erros.valorNegociado !==''}" class="form-control" v-model="pedido.valorNegociado"/></div>
                         <div v-if="pedido.erros.valorNegociado" class="invalid-feedback" >
                             {{pedido.erros.valorNegociado}}
                         </div>
@@ -72,11 +72,13 @@
 					    	  	response.data.forEach(pedido =>{
 					    	  		pedido.ofertaEnviada = false;
 					    	  		pedido.erros = {
-					    	  			valor: '',
+					    	  			valorNegociado: '',
 					    	  			localDate: ''
 					    	  		}
 					    	  	})
 					    	 	this.pedidos = response.data
+					    	 	 console.log(this.pedidos)
+
 					    	})
 					},
 				methods:{
